@@ -1,0 +1,36 @@
+name: Deploy to Salesforce
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - uat
+      - master
+
+jobs:
+  deploy-to-uat:
+    if: github.event.pull_request.merged && github.event.pull_request.base.ref == 'uat'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Salesforce CLI
+        uses: salesforcecli/setup-sfdx@v1
+        with:
+          version: 'latest'
+      - name: Deploy to UAT
+        run: sfdx force:source:deploy -p force-app -u my-uat-sandbox-username -w 5
+
+  deploy-to-production:
+    if: github.event.pull_request.merged && github.event.pull_request.base.ref == 'master'
+    runs-on: ubuntu-latest
+    needs: deploy-to-uat
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Salesforce CLI
+        uses: salesforcecli/setup-sfdx@v1
+        with:
+          version: 'latest'
+      - name: Deploy to Production
+        run: sfdx force:source:deploy -p force-app -u my-production-username -w 5
