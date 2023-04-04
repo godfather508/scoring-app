@@ -1,0 +1,17 @@
+name: SFDX Test Run on Push
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  test:
+  
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_DEV_URL }}
+      - name: sfdx-test-run
+        run: sfdx force:apex:test:run -l RunLocalTests -w 30
