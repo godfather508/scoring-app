@@ -14,8 +14,6 @@
     <label>Scroring App</label>
     <navType>Standard</navType>
     <tabs>standard-home</tabs>
-    <tabs>standard-CollaborationGroup</tabs>
-    <tabs>Scoring_Event__c</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Scroring_App_UtilityBar</utilityBar>
 </CustomApplication>
