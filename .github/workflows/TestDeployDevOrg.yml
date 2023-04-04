@@ -13,10 +13,8 @@ env:
   SFDX_JSON_TO_STDOUT: true
 
 jobs:
-  test:
-  
+  deploy-test-to-dev-org:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: sfdx-actions/setup-sfdx@v1
         with:
@@ -31,4 +29,4 @@ jobs:
       - name: 'Check-only deploy delta changes - run all tests'
         run: |
           sfdx force:source:manifest:create --sourcepath force-app --manifestname package
-          sfdx force:source:deploy -l RunLocalTests -u ${{ secrets.SFDX_USERNAME_DEV }} --checkonly --json
+          sfdx force:source:deploy -l RunLocalTests -u ${{ secrets.SFDX_USERNAME_DEV }} --manifest package.xml --checkonly --json
