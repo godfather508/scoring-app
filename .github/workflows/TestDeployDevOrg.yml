@@ -30,6 +30,5 @@ jobs:
           sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
       - name: 'Check-only deploy delta changes - run all tests'
         run: |
-          ls
           sfdx force:source:manifest:create --sourcepath force-app --manifestname package
-          sfdx force:source:deploy -l RunLocalTests -u ${{ secrets.SFDX_USERNAME_DEV }} --checkonly --json
+          sfdx force:source:deploy -l RunLocalTests -u ${{ secrets.SFDX_USERNAME_DEV }} --manifest package.xml --checkonly --json
