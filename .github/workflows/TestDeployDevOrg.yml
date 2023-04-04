@@ -13,10 +13,8 @@ env:
   SFDX_JSON_TO_STDOUT: true
 
 jobs:
-  test:
-  
+  deploy-test-to-dev-org:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: sfdx-actions/setup-sfdx@v1
         with:
