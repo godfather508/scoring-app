@@ -1,8 +1,16 @@
-name: SFDX Test Run on Push
+name: Deploy Pull Request on Dev org
 
 on:
-  push:
-    branches: [ develop ]
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+env:
+  SFDX_AUTOUPDATE_DISABLE: true
+  SFDX_USE_PROGRESS_BAR: false
+  SFDX_DOMAIN_RETRY: 300
+  SFDX_DISABLE_PRETTIFY: true
+  SFDX_LOG_LEVEL: fatal
+  SFDX_JSON_TO_STDOUT: true
 
 jobs:
   test:
@@ -13,5 +21,14 @@ jobs:
       - uses: sfdx-actions/setup-sfdx@v1
         with:
           sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_DEV_URL }}
-      - name: sfdx-test-run
-        run: sfdx force:apex:test:run -l RunLocalTests -w 30
+      - name: 'Installing SFDX scanner'
+        run: sfdx plugins:install @salesforce/sfdx-scanner
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: 'Scan code'
+        run: |
+          sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'  
+      - name: 'Check-only deploy delta changes - run all tests'
+        run: |
+          sfdx force:source:manifest:create --sourcepath force-app --manifestname package
+          sfdx force:source:deploy -l RunLocalTests -u ${{ secrets.SFDX_USERNAME_DEV }} --checkonly --json
