@@ -1,4 +1,4 @@
-name: Deploy to Salesforce Org
+name: Deploy merged Pull Request
 
 on:
   pull_request:
