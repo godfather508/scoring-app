@@ -1,0 +1,20 @@
+name: Validate when a pull request is opened
+
+on: [push]
+
+jobs:
+  validate_pull_request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Prepare Salesforce SFDX CLI, Authenticate to UAT org
+        uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_UAT_URL }}
+
+      - name: Validate deployment to UAT org
+        run: |
+          sfdx force:source:deploy -c -u ${{ secrets.SFDX_USERNAME_UAT }}
