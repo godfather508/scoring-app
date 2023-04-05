@@ -17,4 +17,4 @@ jobs:
 
       - name: Validate deployment to UAT org
         run: |
-          sfdx force:source:deploy -c -u ${{ secrets.SFDX_USERNAME_UAT }}
+          sfdx force:source:deploy -c -u ${{ secrets.SFDX_USERNAME_UAT }} --sourcepath force-app
