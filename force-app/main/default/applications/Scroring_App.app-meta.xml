@@ -17,5 +17,4 @@
     <tabs>Scoring_Event__c</tabs>
     <tabs>Scoring_Team__c</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Scroring_App_UtilityBar</utilityBar>
 </CustomApplication>
