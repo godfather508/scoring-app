@@ -1,0 +1,57 @@
+name: Deploy merged Pull Request
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+      - develop
+
+env:
+  SFDX_AUTOUPDATE_DISABLE: true
+  SFDX_USE_PROGRESS_BAR: false
+  SFDX_DOMAIN_RETRY: 300
+  SFDX_DISABLE_PRETTIFY: true
+  SFDX_LOG_LEVEL: fatal
+  SFDX_JSON_TO_STDOUT: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2.7.0
+
+      - name: Prepare Salesforce SFDX CLI, Authenticate to UAT org
+        uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_UAT_URL }}
+
+      - name: "Installing SFDX scanner"
+        run: sfdx plugins:install @salesforce/sfdx-scanner
+
+      - name: "Scan code"
+        run: |
+          sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Jest Tests
+        run: npm run test:unit
+
+      - name: Deploy to UAT Org
+        if: github.event.pull_request.merged && github.event.pull_request.base.ref == 'develop'
+        run: |
+          sfdx force:source:deploy -l RunLocalTests -u ${{ secrets.SFDX_USERNAME_UAT }} --sourcepath force-app
+
+      - name: Prepare Salesforce SFDX CLI, Authenticate to PRO org
+        uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_PRO_URL }}
+
+      - name: Deploy to Production Org
+        if: github.event.pull_request.merged && github.event.pull_request.base.ref == 'main'
+        run: |
+          sfdx force:source:deploy -l RunLocalTests -u ${{ secrets.SFDX_USERNAME_PRO }} --sourcepath force-app
