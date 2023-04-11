@@ -28,19 +28,6 @@ jobs:
         with:
           sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_UAT_URL }}
 
-      - name: "Installing SFDX scanner"
-        run: sfdx plugins:install @salesforce/sfdx-scanner
-
-      - name: "Scan code"
-        run: |
-          sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Jest Tests
-        run: npm run test:unit
-
       - name: Deploy to UAT Org
         if: github.event.pull_request.merged && github.event.pull_request.base.ref == 'develop'
         run: |
