@@ -1,0 +1,32 @@
+name: Validate push with Production
+
+on:
+  push:
+    branches:
+      - "!develop"
+      - "!main"
+
+env:
+  SFDX_AUTOUPDATE_DISABLE: true
+  SFDX_USE_PROGRESS_BAR: false
+  SFDX_DOMAIN_RETRY: 300
+  SFDX_DISABLE_PRETTIFY: true
+  SFDX_LOG_LEVEL: fatal
+  SFDX_JSON_TO_STDOUT: true
+
+jobs:
+  validate_pull_request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Prepare Salesforce SFDX CLI, Authenticate to PRO org
+        uses: sfdx-actions/setup-sfdx@v1
+        with:
+          sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_PRO_URL }}
+
+      - name: Validate deployment to PRO org
+        run: |
+          sfdx force:source:deploy -l RunLocalTests -c -u ${{ secrets.SFDX_USERNAME_PRO }} --sourcepath force-app
