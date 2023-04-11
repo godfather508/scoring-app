@@ -21,19 +21,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.7.0
 
       - name: Prepare Salesforce SFDX CLI, Authenticate to UAT org
         uses: sfdx-actions/setup-sfdx@v1
         with:
           sfdx-auth-url: ${{ secrets.SFDX_AUTHEN_UAT_URL }}
 
-      - name: 'Installing SFDX scanner'
+      - name: "Installing SFDX scanner"
         run: sfdx plugins:install @salesforce/sfdx-scanner
 
-      - name: 'Scan code'
+      - name: "Scan code"
         run: |
-          sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif' 
+          sfdx scanner:run --format sarif --target './**/*.cls' --category "Design,Best Practices,Performance" --outfile 'apexScanResults.sarif'
 
       - name: Install Dependencies
         run: npm install
