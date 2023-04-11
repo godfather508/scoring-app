@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>*</members>
@@ -23,8 +23,63 @@
     <types>
         <members>Scoring_App_Admin</members>
         <members>Scoring_App_Participant</members>
+        <members>Scoring_App_Saleforce_Admin</members>
         <members>Scoring_App_Teamlead</members>
         <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>Scoring_Event__c.All</members>
+        <members>Scoring_Team__c.All</members>
+        <name>ListView</name>
+    </types>
+    <types>
+        <members>Scoring_Event_Clue__c-Scoring Event Clue Layout</members>
+        <members
+    >Scoring_Event_Location__c-Scoring Event Location Layout</members>
+        <members
+    >Scoring_Event_Submission__c-Scoring Event Submission Layout</members>
+        <members>Scoring_Event_Team__c-Scoring Event Team Layout</members>
+        <members>Scoring_Event__c-Scoring Event Layout</members>
+        <members>Scoring_Team_Member__c-Scoring Team Member Layout</members>
+        <members>Scoring_Team__c-Scoring Team Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Scoring_Event_Clue__c.Description__c</members>
+        <members>Scoring_Event_Clue__c.Event_Location__c</members>
+        <members>Scoring_Event_Location__c.Description__c</members>
+        <members>Scoring_Event_Location__c.Scoring_Event__c</members>
+        <members>Scoring_Event_Submission__c.Description__c</members>
+        <members>Scoring_Event_Submission__c.Location__c</members>
+        <members>Scoring_Event_Submission__c.Scoring_Event_Team__c</members>
+        <members>Scoring_Event_Submission__c.Scoring_Event__c</members>
+        <members>Scoring_Event_Submission__c.Scoring_Team__c</members>
+        <members>Scoring_Event_Submission__c.Submission_Score__c</members>
+        <members>Scoring_Event_Team__c.Event_Team_Scoring__c</members>
+        <members>Scoring_Event_Team__c.Scoring_Event__c</members>
+        <members>Scoring_Event_Team__c.Scoring_Team__c</members>
+        <members>Scoring_Event__c.Description__c</members>
+        <members>Scoring_Event__c.Scoring_End__c</members>
+        <members>Scoring_Event__c.Scoring_Start__c</members>
+        <members>Scoring_Team_Member__c.Team__c</members>
+        <members>Scoring_Team_Member__c.User__c</members>
+        <members>Scoring_Team__c.Current_Event_Score__c</members>
+        <members>Scoring_Team__c.Description__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Scoring_Event_Clue__c</members>
+        <members>Scoring_Event_Location__c</members>
+        <members>Scoring_Event_Submission__c</members>
+        <members>Scoring_Event_Team__c</members>
+        <members>Scoring_Event__c</members>
+        <members>Scoring_Team_Member__c</members>
+        <members>Scoring_Team__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Update_Owner_Scoring_Event_Submission</members>
+        <name>Flow</name>
     </types>
     <types>
         <members>*</members>
@@ -41,6 +96,11 @@
     <types>
         <members>*</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>Scoring_Event__c</members>
+        <members>Scoring_Team__c</members>
+        <name>CustomTab</name>
     </types>
     <version>56.0</version>
 </Package>
