@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
     <environments>Default</environments>
-    <interviewLabel
-  >Update Owner Scoring Event Submission {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Update Owner Scoring Event Submission {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Owner Scoring Event Submission</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -29,8 +28,7 @@
         <label>Find Scoring Event Team</label>
         <locationX>176</locationX>
         <locationY>431</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Fields</targetReference>
         </connector>
@@ -58,8 +56,7 @@
         <label>Find Team</label>
         <locationX>176</locationX>
         <locationY>311</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Find_Scoring_Event_Team</targetReference>
         </connector>
@@ -91,8 +88,7 @@
         <inputAssignments>
             <field>Scoring_Event__c</field>
             <value>
-                <elementReference
-        >$Record.Location__r.Scoring_Event__c</elementReference>
+                <elementReference>$Record.Location__r.Scoring_Event__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

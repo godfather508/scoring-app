@@ -78,7 +78,7 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Update_Owner_Scoring_Event_Submission</members>
+        <members>*</members>
         <name>Flow</name>
     </types>
     <types>
@@ -101,6 +101,10 @@
         <members>Scoring_Event__c</members>
         <members>Scoring_Team__c</members>
         <name>CustomTab</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>FlexiPage</name>
     </types>
     <version>56.0</version>
 </Package>
