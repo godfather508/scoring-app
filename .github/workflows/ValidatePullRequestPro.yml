@@ -1,4 +1,4 @@
-name: Validate a pull request on UAT
+name: Validate a pull request on Pro
 
 on:
   pull_request:
