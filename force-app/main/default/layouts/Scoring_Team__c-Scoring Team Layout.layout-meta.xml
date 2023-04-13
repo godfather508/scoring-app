@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -52,24 +52,31 @@
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
         <label>Custom Links</label>
-        <layoutColumns />
-        <layoutColumns />
-        <layoutColumns />
+        <layoutColumns/>
+        <layoutColumns/>
+        <layoutColumns/>
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>User__c</fields>
         <relatedList>Scoring_Team_Member__c.Team__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Scoring_Event__c.NAME</fields>
+        <fields>Event_Team_Scoring__c</fields>
+        <fields>LAST_UPDATE</fields>
         <relatedList>Scoring_Event_Team__c.Scoring_Team__c</relatedList>
+        <sortField>LAST_UPDATE</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
         <fields>Submission_Score__c</fields>
+        <fields>LAST_UPDATE</fields>
         <relatedList>Scoring_Event_Submission__c.Scoring_Team__c</relatedList>
-        <sortField>Submission_Score__c</sortField>
+        <sortField>LAST_UPDATE</sortField>
         <sortOrder>Desc</sortOrder>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
