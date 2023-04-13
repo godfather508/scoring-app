@@ -1,8 +1,55 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
+    <decisions>
+        <name>Where_submission_on</name>
+        <label>Where submission on</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Submission_on_Location</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Scoring_Event_Clue__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Location__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Find_Event_Team_By_Location</targetReference>
+            </connector>
+            <label>Submission on Location</label>
+        </rules>
+        <rules>
+            <name>Submission_on_Clue</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Scoring_Event_Clue__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Find_Event_Team_By_Clue</targetReference>
+            </connector>
+            <label>Submission on Clue</label>
+        </rules>
+    </decisions>
     <environments>Default</environments>
-    <interviewLabel>Update Owner Scoring Event Submission {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel
+  >Update Owner Scoring Event Submission {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Owner Scoring Event Submission</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -24,11 +71,42 @@
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
-        <name>Find_Scoring_Event_Team</name>
-        <label>Find Scoring Event Team</label>
-        <locationX>176</locationX>
-        <locationY>431</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <name>Find_Event_Team_By_Clue</name>
+        <label>Find Event Team By Clue</label>
+        <locationX>314</locationX>
+        <locationY>551</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Update_Clue_Fields</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Scoring_Team__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Find_Team.Team__r.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Scoring_Event__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference
+        >$Record.Scoring_Event_Clue__r.Event_Location__r.Scoring_Event__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Scoring_Event_Team__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Find_Event_Team_By_Location</name>
+        <label>Find Event Team By Location</label>
+        <locationX>50</locationX>
+        <locationY>551</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Fields</targetReference>
         </connector>
@@ -44,7 +122,8 @@
             <field>Scoring_Event__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>$Record.Scoring_Event__c</elementReference>
+                <elementReference
+        >$Record.Location__r.Scoring_Event__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -54,11 +133,12 @@
     <recordLookups>
         <name>Find_Team</name>
         <label>Find Team</label>
-        <locationX>176</locationX>
+        <locationX>314</locationX>
         <locationY>311</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Find_Scoring_Event_Team</targetReference>
+            <targetReference>Where_submission_on</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
@@ -75,20 +155,55 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordUpdates>
-        <name>Update_Fields</name>
-        <label>Update Fields</label>
-        <locationX>176</locationX>
-        <locationY>551</locationY>
+        <name>Update_Clue_Fields</name>
+        <label>Update Clue Fields</label>
+        <locationX>314</locationX>
+        <locationY>671</locationY>
+        <inputAssignments>
+            <field>Location__c</field>
+            <value>
+                <elementReference
+        >$Record.Scoring_Event_Clue__r.Event_Location__c</elementReference>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <field>Scoring_Event_Team__c</field>
             <value>
-                <elementReference>Find_Scoring_Event_Team.Id</elementReference>
+                <elementReference>Find_Event_Team_By_Clue.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>Scoring_Event__c</field>
             <value>
-                <elementReference>$Record.Location__r.Scoring_Event__c</elementReference>
+                <elementReference
+        >$Record.Scoring_Event_Clue__r.Event_Location__r.Scoring_Event__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Scoring_Team__c</field>
+            <value>
+                <elementReference>Find_Team.Team__r.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Fields</name>
+        <label>Update Fields</label>
+        <locationX>50</locationX>
+        <locationY>671</locationY>
+        <inputAssignments>
+            <field>Scoring_Event_Team__c</field>
+            <value>
+                <elementReference
+        >Find_Event_Team_By_Location.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Scoring_Event__c</field>
+            <value>
+                <elementReference
+        >$Record.Location__r.Scoring_Event__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -100,11 +215,26 @@
         <inputReference>$Record</inputReference>
     </recordUpdates>
     <start>
-        <locationX>50</locationX>
+        <locationX>188</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Find_Team</targetReference>
         </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Scoring_Event_Clue__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Location__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
         <object>Scoring_Event_Submission__c</object>
         <recordTriggerType>CreateAndUpdate</recordTriggerType>
         <triggerType>RecordBeforeSave</triggerType>
