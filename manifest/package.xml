@@ -110,5 +110,13 @@
         <members>*</members>
         <name>QuickAction</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Queue</name>
+    </types>
     <version>56.0</version>
 </Package>
