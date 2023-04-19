@@ -3,9 +3,9 @@
     <doesSendEmailToMembers>true</doesSendEmailToMembers>
     <name>Scoring Event Approver</name>
     <queueMembers>
-        <users>
-            <user>salesforceadmin@sfdxvenger.com.dev</user>
-        </users>
+        <roles>
+            <role>Scoring_App_Approver</role>
+        </roles>
     </queueMembers>
     <queueSobject>
         <sobjectType>Scoring_Event_Submission__c</sobjectType>
