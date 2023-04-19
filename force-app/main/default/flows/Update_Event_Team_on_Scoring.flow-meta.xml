@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>57.0</apiVersion>
     <assignments>
@@ -10,8 +10,7 @@
             <assignToReference>TotalTeamScoring</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference
-        >Loop_in_Submissions.Submission_Score__c</elementReference>
+                <elementReference>Loop_in_Submissions.Submission_Score__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -19,16 +18,14 @@
         </connector>
     </assignments>
     <environments>Default</environments>
-    <interviewLabel
-  >Update Event Team on Scoring {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Update Event Team on Scoring {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Event Team on Scoring</label>
     <loops>
         <name>Loop_in_Submissions</name>
         <label>Loop in Submissions</label>
         <locationX>176</locationX>
         <locationY>455</locationY>
-        <collectionReference
-    >Find_Scoring_Event_Submissions</collectionReference>
+        <collectionReference>Find_Scoring_Event_Submissions</collectionReference>
         <iterationOrder>Asc</iterationOrder>
         <nextValueConnector>
             <targetReference>Get_Total_Team_Scoring</targetReference>
@@ -61,8 +58,7 @@
         <label>Find  Scoring Event Submissions</label>
         <locationX>176</locationX>
         <locationY>335</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Loop_in_Submissions</targetReference>
         </connector>
@@ -71,8 +67,7 @@
             <field>Scoring_Event_Team__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference
-        >$Record.Scoring_Event_Team__c</elementReference>
+                <elementReference>$Record.Scoring_Event_Team__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
@@ -89,8 +84,7 @@
             <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference
-        >$Record.Scoring_Event_Team__c</elementReference>
+                <elementReference>$Record.Scoring_Event_Team__c</elementReference>
             </value>
         </filters>
         <inputAssignments>

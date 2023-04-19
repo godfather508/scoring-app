@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
         <name>Convert_CSV</name>
@@ -21,8 +21,7 @@
         <inputParameters>
             <name>contentDocumentIdList</name>
             <value>
-                <elementReference
-        >LocationClueFileUpload.contentDocIds</elementReference>
+                <elementReference>LocationClueFileUpload.contentDocIds</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
@@ -112,8 +111,7 @@
         <locationX>270</locationX>
         <locationY>974</locationY>
         <assignmentItems>
-            <assignToReference
-      >Loop_in_clues.Event_Location__c</assignToReference>
+            <assignToReference>Loop_in_clues.Event_Location__c</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>locationId</elementReference>
@@ -168,8 +166,7 @@
         <valueField>Id</valueField>
     </dynamicChoiceSets>
     <environments>Default</environments>
-    <interviewLabel
-  >Upload locations, clues file {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Upload locations, clues file {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Upload locations, clues file</label>
     <loops>
         <name>Loop_in_clues</name>
@@ -220,8 +217,7 @@
         <label>Find Event</label>
         <locationX>182</locationX>
         <locationY>158</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Assign_Event_Location</targetReference>
         </connector>
@@ -247,8 +243,7 @@
         <allowPause>true</allowPause>
         <fields>
             <name>ErrorMessage</name>
-            <fieldText
-      >&lt;p&gt;An error occurred during the processing!&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Note: The format of the CSV file should be like the following screenshot.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://dxc-17f-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0682w00000QsOlR?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;Capture.PNG&quot;&gt;&lt;img src=&quot;https://dxc-17f-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0682w00000QsOl7?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;image.png&quot;&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;An error occurred during the processing!&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Note: The format of the CSV file should be like the following screenshot.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://dxc-17f-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0682w00000QsOlR?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;Capture.PNG&quot;&gt;&lt;img src=&quot;https://dxc-17f-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0682w00000QsOl7?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;image.png&quot;&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -304,8 +299,7 @@
                     <elementReference>locationId</elementReference>
                 </value>
             </inputParameters>
-            <inputsOnNextNavToAssocScrn
-      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
         </fields>
