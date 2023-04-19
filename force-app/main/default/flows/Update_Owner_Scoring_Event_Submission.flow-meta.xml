@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>56.0</apiVersion>
     <decisions>
@@ -11,8 +11,7 @@
             <name>Submission_on_Location</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference
-        >$Record.Scoring_Event_Clue__c</leftValueReference>
+                <leftValueReference>$Record.Scoring_Event_Clue__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
@@ -34,8 +33,7 @@
             <name>Submission_on_Clue</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference
-        >$Record.Scoring_Event_Clue__c</leftValueReference>
+                <leftValueReference>$Record.Scoring_Event_Clue__c</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -48,8 +46,7 @@
         </rules>
     </decisions>
     <environments>Default</environments>
-    <interviewLabel
-  >Update Owner Scoring Event Submission {!$Flow.CurrentDateTime}</interviewLabel>
+    <interviewLabel>Update Owner Scoring Event Submission {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Update Owner Scoring Event Submission</label>
     <processMetadataValues>
         <name>BuilderType</name>
@@ -75,8 +72,7 @@
         <label>Find Event Team By Clue</label>
         <locationX>314</locationX>
         <locationY>551</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Clue_Fields</targetReference>
         </connector>
@@ -92,8 +88,7 @@
             <field>Scoring_Event__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference
-        >$Record.Scoring_Event_Clue__r.Event_Location__r.Scoring_Event__c</elementReference>
+                <elementReference>$Record.Scoring_Event_Clue__r.Event_Location__r.Scoring_Event__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -105,8 +100,7 @@
         <label>Find Event Team By Location</label>
         <locationX>50</locationX>
         <locationY>551</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Update_Fields</targetReference>
         </connector>
@@ -122,8 +116,7 @@
             <field>Scoring_Event__c</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference
-        >$Record.Location__r.Scoring_Event__c</elementReference>
+                <elementReference>$Record.Location__r.Scoring_Event__c</elementReference>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
@@ -135,8 +128,7 @@
         <label>Find Team</label>
         <locationX>314</locationX>
         <locationY>311</locationY>
-        <assignNullValuesIfNoRecordsFound
-    >false</assignNullValuesIfNoRecordsFound>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Where_submission_on</targetReference>
         </connector>
@@ -162,8 +154,7 @@
         <inputAssignments>
             <field>Location__c</field>
             <value>
-                <elementReference
-        >$Record.Scoring_Event_Clue__r.Event_Location__c</elementReference>
+                <elementReference>$Record.Scoring_Event_Clue__r.Event_Location__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -175,8 +166,7 @@
         <inputAssignments>
             <field>Scoring_Event__c</field>
             <value>
-                <elementReference
-        >$Record.Scoring_Event_Clue__r.Event_Location__r.Scoring_Event__c</elementReference>
+                <elementReference>$Record.Scoring_Event_Clue__r.Event_Location__r.Scoring_Event__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -195,15 +185,13 @@
         <inputAssignments>
             <field>Scoring_Event_Team__c</field>
             <value>
-                <elementReference
-        >Find_Event_Team_By_Location.Id</elementReference>
+                <elementReference>Find_Event_Team_By_Location.Id</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
             <field>Scoring_Event__c</field>
             <value>
-                <elementReference
-        >$Record.Location__r.Scoring_Event__c</elementReference>
+                <elementReference>$Record.Location__r.Scoring_Event__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>

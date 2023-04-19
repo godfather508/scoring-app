@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Scoring_Event_Clue__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Scoring Event Clue</label>
+    <label>Clue</label>
     <referenceTo>Scoring_Event_Clue__c</referenceTo>
-    <relationshipLabel>Scoring Event Submissions</relationshipLabel>
+    <relationshipLabel>Submissions</relationshipLabel>
     <relationshipName>Scoring_Event_Submissions</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>

@@ -103,10 +103,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>is_Approved__c</field>
+            <field>Approval_Status__c</field>
             <operator>EqualTo</operator>
             <value>
-                <booleanValue>true</booleanValue>
+                <stringValue>Approved</stringValue>
             </value>
         </filters>
         <object>Scoring_Event_Submission__c</object>

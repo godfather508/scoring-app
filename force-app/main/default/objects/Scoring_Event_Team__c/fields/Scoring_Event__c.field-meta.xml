@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Scoring_Event__c</fullName>
     <externalId>false</externalId>
-    <label>Scoring Event</label>
+    <label>Event</label>
     <referenceTo>Scoring_Event__c</referenceTo>
-    <relationshipLabel>Scoring Event Teams</relationshipLabel>
+    <relationshipLabel>Teams</relationshipLabel>
     <relationshipName>Scoring_Event_Teams</relationshipName>
     <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>

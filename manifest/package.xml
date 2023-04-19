@@ -106,5 +106,28 @@
         <members>*</members>
         <name>FlexiPage</name>
     </types>
+    <types>
+        <members>*</members>
+        <name>QuickAction</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>Queue</name>
+    </types>
+    <types>
+        <members>Scoring_App_Approver</members>
+        <name>Role</name>
+    </types>
+    <types>
+        <members>Case.ChangePriorityToHigh</members>
+        <members>Scoring_Event_Submission__c.Update_Approval_Status_Submitted</members>
+        <members>Scoring_Event_Submission__c.Update_Status_to_Approved</members>
+        <members>Scoring_Event_Submission__c.Update_Status_to_Deferred</members>
+        <name>WorkflowFieldUpdate</name>
+    </types>
     <version>56.0</version>
 </Package>

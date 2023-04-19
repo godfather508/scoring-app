@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Scoring_Event_Approver_Scoring_Event_Submission</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Scoring Event Approver</label>
+    <queue>Scoring_Event_Approver</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

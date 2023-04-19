@@ -156,7 +156,7 @@
     <label>Scoring Event Submission</label>
     <nameField>
         <displayFormat>S-{0000}</displayFormat>
-        <label>Scoring Event Submission Name</label>
+        <label>Submission Name</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Scoring Event Submissions</pluralLabel>

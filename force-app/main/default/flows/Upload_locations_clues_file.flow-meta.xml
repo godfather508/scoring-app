@@ -1,9 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Convert_CSV</name>
+        <label>Convert CSV</label>
+        <locationX>182</locationX>
+        <locationY>734</locationY>
+        <actionName>ConvertCSVToRecords</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Loop_in_clues</targetReference>
+        </connector>
+        <dataTypeMappings>
+            <typeName>U__convertedCSVRows</typeName>
+            <typeValue>Scoring_Event_Clue__c</typeValue>
+        </dataTypeMappings>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>contentDocumentIdList</name>
+            <value>
+                <elementReference>LocationClueFileUpload.contentDocIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>objectApiName</name>
+            <value>
+                <stringValue>Scoring_Event_Clue__c</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>FSep</name>
+            <value>
+                <stringValue>,</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>DSep</name>
+            <value>
+                <stringValue>.</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>TSep</name>
+            <value>
+                <stringValue>,</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>vCur</name>
+            <value>
+                <stringValue>,</stringValue>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
     <apiVersion>57.0</apiVersion>
+    <assignments>
+        <name>Add_Clue_to_Clues</name>
+        <label>Add Clue to Clues</label>
+        <locationX>270</locationX>
+        <locationY>1094</locationY>
+        <assignmentItems>
+            <assignToReference>clues</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_in_clues</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_in_clues</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Event_Id</name>
+        <label>Assign Event Id</label>
+        <locationX>50</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>eventId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Upload_locations_clues_file</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Location_Id</name>
+        <label>Assign Location Id</label>
+        <locationX>314</locationX>
+        <locationY>398</locationY>
+        <assignmentItems>
+            <assignToReference>locationId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Upload_locations_clues_file</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Location_Id_to_Clue</name>
+        <label>Assign Location Id to Clue</label>
+        <locationX>270</locationX>
+        <locationY>974</locationY>
+        <assignmentItems>
+            <assignToReference>Loop_in_clues.Event_Location__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>locationId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_Clue_to_Clues</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Assign_Event_Location</name>
+        <label>Assign Event Location</label>
+        <locationX>182</locationX>
+        <locationY>278</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Location_Id</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>is Location Page</defaultConnectorLabel>
+        <rules>
+            <name>is_Event_Page</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Find_Event</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Event_Id</targetReference>
+            </connector>
+            <label>is Event Page</label>
+        </rules>
+    </decisions>
+    <dynamicChoiceSets>
+        <name>eventLocations</name>
+        <dataType>String</dataType>
+        <displayField>Name</displayField>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Scoring_Event__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>eventId</elementReference>
+            </value>
+        </filters>
+        <object>Scoring_Event_Location__c</object>
+        <outputAssignments>
+            <assignToReference>locationId</assignToReference>
+            <field>Id</field>
+        </outputAssignments>
+        <valueField>Id</valueField>
+    </dynamicChoiceSets>
     <environments>Default</environments>
     <interviewLabel>Upload locations, clues file {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Upload locations, clues file</label>
+    <loops>
+        <name>Loop_in_clues</name>
+        <label>Loop in clues</label>
+        <locationX>182</locationX>
+        <locationY>854</locationY>
+        <collectionReference>Convert_CSV.convertedCSVRows</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Location_Id_to_Clue</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Insert_Clues</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -23,14 +201,88 @@
         </value>
     </processMetadataValues>
     <processType>Flow</processType>
-    <screens>
-        <name>Upload_locations_clues_file</name>
-        <label>Upload locations, clues file</label>
-        <locationX>176</locationX>
+    <recordCreates>
+        <name>Insert_Clues</name>
+        <label>Insert Clues</label>
+        <locationX>182</locationX>
+        <locationY>1310</locationY>
+        <faultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <inputReference>clues</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Find_Event</name>
+        <label>Find Event</label>
+        <locationX>182</locationX>
         <locationY>158</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Event_Location</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Scoring_Event__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>842</locationX>
+        <locationY>854</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;An error occurred during the processing!&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;{!$Flow.FaultMessage}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Note: The format of the CSV file should be like the following screenshot.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://dxc-17f-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0682w00000QsOlR?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;Capture.PNG&quot;&gt;&lt;img src=&quot;https://dxc-17f-dev-ed.develop.file.force.com/sfc/servlet.shepherd/version/download/0682w00000QsOl7?asPdf=false&amp;amp;operationContext=CHATTER&quot; alt=&quot;image.png&quot;&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Upload_locations_clues_file</name>
+        <label>Upload locations, clues file</label>
+        <locationX>182</locationX>
+        <locationY>614</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Convert_CSV</targetReference>
+        </connector>
+        <fields>
+            <name>Location</name>
+            <choiceReferences>eventLocations</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Location</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>eventId</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>test</name>
+            <fieldText>&lt;p&gt;{!$Flow.CurrentRecord}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <fields>
             <name>LocationClueFileUpload</name>
             <extensionName>forceContent:fileUpload</extensionName>
@@ -41,6 +293,12 @@
                     <stringValue>File Upload</stringValue>
                 </value>
             </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference>locationId</elementReference>
+                </value>
+            </inputParameters>
             <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
             <isRequired>true</isRequired>
             <storeOutputAutomatically>true</storeOutputAutomatically>
@@ -49,11 +307,40 @@
         <showHeader>true</showHeader>
     </screens>
     <start>
-        <locationX>50</locationX>
+        <locationX>56</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Upload_locations_clues_file</targetReference>
+            <targetReference>Find_Event</targetReference>
         </connector>
     </start>
-    <status>Draft</status>
+    <status>Active</status>
+    <variables>
+        <name>clues</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Scoring_Event_Clue__c</objectType>
+    </variables>
+    <variables>
+        <name>eventId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>locationId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>

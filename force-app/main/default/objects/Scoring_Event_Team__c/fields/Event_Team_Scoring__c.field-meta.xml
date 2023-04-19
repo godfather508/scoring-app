@@ -2,7 +2,7 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Event_Team_Scoring__c</fullName>
     <externalId>false</externalId>
-    <label>Event Team Scoring</label>
+    <label>Scoring</label>
     <precision>18</precision>
     <required>false</required>
     <scale>0</scale>

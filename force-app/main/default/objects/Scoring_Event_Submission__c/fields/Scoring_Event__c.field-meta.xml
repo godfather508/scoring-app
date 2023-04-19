@@ -3,9 +3,9 @@
     <fullName>Scoring_Event__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
     <externalId>false</externalId>
-    <label>Scoring Event</label>
+    <label>Event</label>
     <referenceTo>Scoring_Event__c</referenceTo>
-    <relationshipLabel>Scoring Event Submissions</relationshipLabel>
+    <relationshipLabel>Submissions</relationshipLabel>
     <relationshipName>Scoring_Event_Submissions</relationshipName>
     <required>false</required>
     <trackTrending>false</trackTrending>

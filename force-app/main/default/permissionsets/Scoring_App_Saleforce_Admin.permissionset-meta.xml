@@ -6,7 +6,32 @@
     </applicationVisibilities>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Scoring_Event_Clue__c.Clue_Answer__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Scoring_Event_Clue__c.Max_Point__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Scoring_Event_Clue__c.Min_Point__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Scoring_Event_Clue__c.Reduction_Step_Point__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Scoring_Event_Location__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Scoring_Event_Submission__c.Approval_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -17,6 +42,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Scoring_Event_Submission__c.Location__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Scoring_Event_Submission__c.Scoring_Event_Clue__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -42,6 +72,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Scoring_Event_Team__c.Event_Team_Scoring__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Scoring_Event_Team__c.Scoring_Event_Location__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
