@@ -3,7 +3,7 @@ public with sharing class ScoringDataFactory {
         List<Scoring_Event__c> events = new List<Scoring_Event__c>();
         for(Integer i = 0;i< num;i++) {
             events.add(new Scoring_Event__c(
-                Name = name,
+                Name = name + ' ' + i,
                 Description__c = description,
                 Scoring_Start__c = System.now(),
                 Scoring_End__c = System.now().addHours(1)
@@ -18,7 +18,7 @@ public with sharing class ScoringDataFactory {
         for(Scoring_Event__c event : events) {
             for(Integer i = 0;i< num;i++) {
                 locations.add(new Scoring_Event_Location__c(
-                    Name = name,
+                    Name = name + ' ' + i,
                     Description__c = description,
                     Scoring_Event__c = event.Id
                 ));
@@ -49,7 +49,7 @@ public with sharing class ScoringDataFactory {
         List<Scoring_Team__c> teams = new List<Scoring_Team__c>();
         for(Integer i = 0;i< num;i++) {
             teams.add(new Scoring_Team__c(
-                Name = name,
+                Name = name + ' ' + i,
                 Description__c = description
             ));
         }
