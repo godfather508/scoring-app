@@ -38,7 +38,7 @@ public class SubmissionTriggerHandler {
             calcScoring(calcSub, clues.get(clueId));
             updSubmissions.addAll(calcSub);
         }
-        update updSubmissions;
+        //update updSubmissions;
     }
 
     public static void calcScoring(List<Scoring_Event_Submission__c> subs, Scoring_Event_Clue__c clue) {
