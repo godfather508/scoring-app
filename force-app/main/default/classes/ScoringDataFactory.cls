@@ -31,7 +31,7 @@ public with sharing class ScoringDataFactory {
     public static List<Scoring_Event_Clue__c> createClues(String name, String description, Integer num, List<Scoring_Event_Location__c> locations) {
         List<Scoring_Event_Clue__c> clues = new List<Scoring_Event_Clue__c>();
         for(Scoring_Event_Location__c location : locations) {
-            for(Integer i = 0;i< num;i++) {
+            for(Integer i = 1;i< num + 1;i++) {
                 clues.add(new Scoring_Event_Clue__c(
                     Description__c = description,
                     Event_Location__c = location.Id,
@@ -99,18 +99,25 @@ public with sharing class ScoringDataFactory {
     }
 
     public static void createBasicScoringData() {
-        List<Scoring_Event__c> events = createEvents('Event', 'Test Event', 1);
-        List<Scoring_Event_Location__c> locations = createLocations('Location', 'Test Location', 2, events);
-        List<Scoring_Event_Clue__c> clues = createClues('Clue', 'Test Clue', 10, locations);
+        List<Scoring_Event__c> events = createEvents('Test Event', 'Test Event', 1);
+        List<Scoring_Event_Location__c> locations = createLocations('Test Location', 'Test Location', 2, events);
+        List<Scoring_Event_Clue__c> clues = createClues('Test Clue', 'Test Clue', 10, locations);
         
-        List<Scoring_Team__c> groupTeam1 = createTeams('Team', 'Test Team', 2);
-        createTeamMembers('Team', 'Test Team', 4, groupTeam1);
-        createEventTeams('EventTeam','Test EventTeam', 10, events.get(0), locations.get(0), groupTeam1);
+        List<Scoring_Team__c> groupTeamA = createTeams('Test Team A', 'Test Team', 2);
+        createTeamMembers('Test Team A', 'Test Team', 4, groupTeamA);
+        createEventTeams('Test EventTeam A','Test EventTeam A', 10, events.get(0), locations.get(0), groupTeamA);
 
-        List<Scoring_Team__c> groupTeam2 = createTeams('Team', 'Test Team', 2);
-        createTeamMembers('Team', 'Test Team', 4, groupTeam1);
-        createEventTeams('EventTeam','Test EventTeam', 10, events.get(0), locations.get(1), groupTeam1);
+        List<Scoring_Team__c> groupTeamB = createTeams('Test Team B', 'Test Team B', 2);
+        createTeamMembers('Test Team B', 'Test Team B', 4, groupTeamB);
+        createEventTeams('Test EventTeam B','Test EventTeam B', 10, events.get(0), locations.get(1), groupTeamB);
 
-        createSubmissions('Submission','Test Submission', 2, clues);
+        createSubmissions('Test Submission','Test Submission', 2, clues);
+    }
+
+    public static void cleanTestData() {
+        delete [SELECT Id FROM Scoring_Event_Submission__c 
+            WHERE Scoring_Event__c IN (SELECT Id FROM Scoring_Event__c WHERE Name LIKE 'Test %')];
+        delete [SELECT Id FROM Scoring_Event__c WHERE Name LIKE 'Test %'];
+        delete [SELECT Id FROM Scoring_Team__c WHERE Name LIKE 'Test %'];
     }
 }

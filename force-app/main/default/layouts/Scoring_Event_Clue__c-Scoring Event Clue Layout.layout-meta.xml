@@ -95,6 +95,7 @@
         <fields>Submission_Score__c</fields>
         <fields>Scoring_Event_Team__c</fields>
         <fields>Approval_Status__c</fields>
+        <fields>CREATED_DATE</fields>
         <relatedList>Scoring_Event_Submission__c.Scoring_Event_Clue__c</relatedList>
         <sortField>Submission_Score__c</sortField>
         <sortOrder>Desc</sortOrder>

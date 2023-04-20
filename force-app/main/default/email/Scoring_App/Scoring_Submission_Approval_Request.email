@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Approval Request</title>
+  </head>
+  <body>
+    <p>Hi {!User.FirstName},</p>
+    <p>An participant has requested your approval for an item. You can find it at this link: <a href={!ApprovalRequest.Internal_URL}>{!ApprovalRequest.Internal_URL}</a>.</p>
+    <p>We value your input and would greatly appreciate it if you could take a moment to approve or reject this record by clicking the link above.</p>
+    <p>Thank you for your time and consideration. We look forward to hearing back from you soon!</p>
+    <p>Best regards,<br>
+    Scoring App by SFDX Venger</p>
+  </body>
+</html>

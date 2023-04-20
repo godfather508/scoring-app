@@ -155,8 +155,9 @@
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Scoring Event Team</label>
     <nameField>
-        <label>Scoring Event Group Name</label>
-        <type>Text</type>
+        <displayFormat>ET-{0000}</displayFormat>
+        <label>Event Team Name</label>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Scoring Event Teams</pluralLabel>
     <searchLayouts></searchLayouts>

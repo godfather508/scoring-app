@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Scoring Submission Approval Request</name>
+    <style>none</style>
+    <subject>Scoring Submission Approval Request</subject>
+    <textOnly>Approval Request
+
+Hi {!User.FirstName},
+
+An participant has requested your approval for an item. You can find it at this link: {!ApprovalRequest.Internal_URL}.
+
+We value your input and would greatly appreciate it if you could take a moment to approve or reject this record by clicking the link above.
+
+Thank you for your time and consideration. We look forward to hearing back from you soon!
+
+Best regards,
+Scoring App by SFDX Venger</textOnly>
+    <type>custom</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>

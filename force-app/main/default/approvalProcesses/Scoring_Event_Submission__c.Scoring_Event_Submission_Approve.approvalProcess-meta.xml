@@ -3,11 +3,12 @@
     <active>true</active>
     <allowRecall>false</allowRecall>
     <allowedSubmitters>
-        <type>owner</type>
+        <submitter>Scoring_App_Approver</submitter>
+        <type>role</type>
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
-        <field>Owner</field>
+        <field>Description__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
@@ -21,6 +22,7 @@
         <label>Step 1</label>
         <name>Step_1</name>
     </approvalStep>
+    <emailTemplate>Scoring_App/Scoring_Submission_Approval_Request</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <criteriaItems>

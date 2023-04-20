@@ -1,7 +1,11 @@
-trigger SubmissionTrigger on Scoring_Event_Submission__c (after update) {
-    if (Trigger.isAfter) {
+trigger SubmissionTrigger on Scoring_Event_Submission__c (before insert, before update) {
+    if (Trigger.isBefore) {
+        if (Trigger.isInsert) {
+            SubmissionTriggerHandler.beforeInsert(Trigger.new);
+        }
+
         if (Trigger.isUpdate) {
-            SubmissionTriggerHandler.afterUpdate(Trigger.oldMap, Trigger.new);
+            SubmissionTriggerHandler.beforeUpdate(Trigger.oldMap, Trigger.new);
         }
     }
 }
