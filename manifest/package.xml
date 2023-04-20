@@ -129,5 +129,10 @@
         <members>Scoring_Event_Submission__c.Update_Status_to_Deferred</members>
         <name>WorkflowFieldUpdate</name>
     </types>
+    <types>
+        <members>Scoring_App</members>
+        <members>Scoring_App/Scoring_Submission_Approval_Request</members>
+        <name>EmailTemplate</name>
+    </types>
     <version>56.0</version>
 </Package>

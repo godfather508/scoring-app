@@ -7,7 +7,4 @@
             <role>Scoring_App_Approver</role>
         </roles>
     </queueMembers>
-    <queueSobject>
-        <sobjectType>Scoring_Event_Submission__c</sobjectType>
-    </queueSobject>
 </Queue>

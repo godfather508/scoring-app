@@ -28,14 +28,12 @@
                 <behavior>Edit</behavior>
                 <field>Description__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
             </layoutItems>
         </layoutColumns>
-        <style>TwoColumnsTopToBottom</style>
+        <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -47,14 +45,12 @@
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>LastModifiedById</field>
             </layoutItems>
         </layoutColumns>
-        <style>TwoColumnsTopToBottom</style>
+        <style>OneColumn</style>
     </layoutSections>
     <layoutSections>
         <customLabel>true</customLabel>
@@ -104,9 +100,10 @@
     <relatedLists>
         <fields>NAME</fields>
         <fields>Scoring_Team__c</fields>
-        <fields>Location__c</fields>
         <fields>Scoring_Event_Clue__c</fields>
         <fields>Submission_Score__c</fields>
+        <fields>Approval_Status__c</fields>
+        <fields>Location__c</fields>
         <relatedList>Scoring_Event_Submission__c.Scoring_Event__c</relatedList>
         <sortField>Submission_Score__c</sortField>
         <sortOrder>Desc</sortOrder>

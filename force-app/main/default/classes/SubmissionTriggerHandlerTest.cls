@@ -15,7 +15,7 @@ private class SubmissionTriggerHandlerTest {
             
         } finally {
             List<Scoring_Event_Submission__c> subs = [SELECT Id, Submission_Score__c FROM Scoring_Event_Submission__c WHERE Submission_Score__c > 0];
-            //Assert.areEqual(subs.size(), 1, 'The submission score is updated.');
+            Assert.areEqual(subs.size(), 1, 'The submission score is updated.');
         }
     }
 }
