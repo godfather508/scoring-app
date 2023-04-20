@@ -46,6 +46,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Scoring_Event_Submission__c.Scoring_Event_Clue__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Scoring_Event_Submission__c.Scoring_Event_Team__c</field>
         <readable>true</readable>
     </fieldPermissions>

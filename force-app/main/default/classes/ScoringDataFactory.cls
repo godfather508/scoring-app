@@ -115,6 +115,8 @@ public with sharing class ScoringDataFactory {
     }
 
     public static void cleanTestData() {
+        delete [SELECT Id FROM Scoring_Event_Submission__c 
+            WHERE Scoring_Event__c IN (SELECT Id FROM Scoring_Event__c WHERE Name LIKE 'Test %')];
         delete [SELECT Id FROM Scoring_Event__c WHERE Name LIKE 'Test %'];
         delete [SELECT Id FROM Scoring_Team__c WHERE Name LIKE 'Test %'];
     }

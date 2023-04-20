@@ -3,10 +3,12 @@
     <active>true</active>
     <allowRecall>false</allowRecall>
     <allowedSubmitters>
-        <type>owner</type>
+        <submitter>Scoring_App_Approver</submitter>
+        <type>role</type>
     </allowedSubmitters>
     <approvalPageFields>
         <field>Name</field>
+        <field>Description__c</field>
     </approvalPageFields>
     <approvalStep>
         <allowDelegate>false</allowDelegate>
