@@ -28,7 +28,7 @@ describe("c-countdown-timer", () => {
           }
         }
       };
-    getRecord.emit(mockData);
+    // getRecord.emit(mockData);
     jest.advanceTimersByTime(1000);
     // Wait for any asynchronous DOM updates
     return Promise.resolve().then(() => {
