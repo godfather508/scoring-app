@@ -1,2 +1,3 @@
 .sf/config.json
 .sfdx/
+node_modules/
