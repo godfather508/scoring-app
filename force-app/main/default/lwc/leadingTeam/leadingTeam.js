@@ -4,31 +4,15 @@ import findLeadingTeam from '@salesforce/apex/LeadingTeamController.findLeadingT
 
 export default class LeadingTeam extends LightningElement {
     messageCongrats = 'Congratulations to the team A who is leading with 100 points';
+
     @api recordId;
-    // @wire(findLeadingTeam, { recordId: '$recordId' })
-    // wiredData({ error, data }) {
-    //     if (data) {
-    //         console.log(data);
-    //         this.messageCongrats = 'Congratulations to the team ' + data.name + ' who is leading with ' + data.teamPoint + ' points';
-    //     } else {
-    //         this.messageCongrats = '';
-    //     }
-    // }
-
-    // // Method to refresh the wire adapter every minute
-    // refreshData() {
-    //     return refreshApex(this.wiredData);
-    // }
-
-    // // Call refreshData every minute
-    // connectedCallback() {
-    //     this.refreshInterval = setInterval(() => {
-    //         this.refreshData();
-    //     }, 60000);
-    // }
-
-    // // Stop refreshing when the component is disconnected
-    // disconnectedCallback() {
-    //     clearInterval(this.refreshInterval);
-    // }
+    @wire(findLeadingTeam, {eventId: '$recordId'})
+    findLeadingTeam({ error, data }) {
+        if (data) {
+            this.messageCongrats = 'Congratulations to the team ' + data.Scoring_Team__r.Name
+                + ' who is leading with ' + data.Event_Team_Scoring__c + ' points';
+        } else {
+            this.messageCongrats = 'Waiting.';
+        }
+    }
 }
