@@ -4,10 +4,6 @@
         <application>Scroring_App</application>
         <visible>true</visible>
     </applicationVisibilities>
-    <classAccesses>
-        <apexClass>LeadingTeamController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
     <fieldPermissions>
         <editable>true</editable>
         <field>Scoring_Event_Clue__c.Clue_Answer__c</field>

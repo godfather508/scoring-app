@@ -1,0 +1,15 @@
+<template>
+    <lightning-card title="Team Information">
+        <div class="slds-var-m-around_medium">
+            <div class="message"><lightning-formatted-rich-text
+                value={message}
+            ></lightning-formatted-rich-text></div>
+            <template if:true={error}>
+                <c-error-panel errors={error}></c-error-panel>
+            </template>
+            <div class="button-row">
+                <lightning-button label={labelButton} variant="brand" onclick={handleButtonClick}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

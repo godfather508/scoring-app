@@ -1,0 +1,11 @@
+<template>
+    <lightning-modal-header label="Submission"></lightning-modal-header>
+    <lightning-modal-body> 
+        <lightning-flow
+            flow-api-name='Create_a_Submission'
+            flow-input-variables={flowInput}
+            onstatuschange={flowStatusChange}
+        >
+        </lightning-flow>
+    </lightning-modal-body>
+</template>

@@ -1,0 +1,21 @@
+<template>
+    <lightning-modal-header label={modalLabel}></lightning-modal-header>
+    <lightning-modal-body> 
+        { message }
+        <template if:true={isJoin}>
+            <lightning-combobox
+                    name="selectTeam"
+                    label="Select a team"
+                    placeholder="Select a team"
+                    options={teamOptions}
+                    onchange={handleTeamChange} ></lightning-combobox>
+        </template>
+        <template if:true={error}>
+            <c-error-panel errors={error}></c-error-panel>
+        </template>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button variant="neutral" label="Cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button variant="brand" label={okBtnLabel} onclick={handleOkay} class="slds-m-left_x-small"></lightning-button>
+    </lightning-modal-footer>
+</template>
