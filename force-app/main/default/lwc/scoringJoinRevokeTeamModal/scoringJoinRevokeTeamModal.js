@@ -3,11 +3,11 @@ import LightningModal from 'lightning/modal';
 import findTeams from '@salesforce/apex/ScoringAppLWCController.findTeams';
 import saveTeamMember from '@salesforce/apex/ScoringAppLWCController.saveTeamMember';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import findJoinedEvent from '@salesforce/apex/ScoringAppLWCController.findJoinedEvent';
 
 export default class ScoringJoinRevokeTeamModal extends LightningModal {
     @api teamId;
     @api eventId;
-    @api joinedTeams;
     @api isJoin;
 
     modalLabel;
@@ -30,7 +30,7 @@ export default class ScoringJoinRevokeTeamModal extends LightningModal {
     }
 
     loadFindTeams() {
-        if (this.eventId) {
+        if (this.eventId && this.isJoin) {
             findTeams({ eventId: this.eventId })
             .then(result => {
                 this.teamOptions = result.map(item => ({
@@ -39,7 +39,23 @@ export default class ScoringJoinRevokeTeamModal extends LightningModal {
                 }));
             })
             .catch(error => {
-                this.error = error;
+                this.error = 'System has a issue. Please contact administrator.';
+                console.log(error);
+            });
+        }
+
+        if (this.eventId && !this.isJoin) {
+            findJoinedEvent({ eventId: this.eventId })
+            .then(result => {
+                console.log(result);
+                this.teamOptions = result.map(item => ({
+                    label: item.Team__r.Name,
+                    value: item.Team__c
+                }));
+                this.teamId = result[0].Team__c;
+            })
+            .catch(error => {
+                this.error = 'System has a issue. Please contact administrator.';
                 console.log(error);
             });
         }
@@ -64,9 +80,7 @@ export default class ScoringJoinRevokeTeamModal extends LightningModal {
     }
 
     loadSaveTeamMember() {
-        if (this.joinedTeams && this.joinedTeams.length === 1) {
-            this.teamId = this.joinedTeams[0].Team__c;
-        }
+        console.log(this.teamId);
         if (this.teamId) {
             saveTeamMember({ teamId: this.teamId, isJoin: this.isJoin })
                 .then(result => {
@@ -74,7 +88,7 @@ export default class ScoringJoinRevokeTeamModal extends LightningModal {
                     this.close('success');
                 })
                 .catch(error => {
-                    this.error = error;
+                    this.error = 'System has a issue. Please contact administrator.';
                     console.log(error);
                 });
         }

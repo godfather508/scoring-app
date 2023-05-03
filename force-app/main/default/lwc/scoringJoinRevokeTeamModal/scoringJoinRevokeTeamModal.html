@@ -10,6 +10,14 @@
                     options={teamOptions}
                     onchange={handleTeamChange} ></lightning-combobox>
         </template>
+        <template if:false={isJoin}>
+            <lightning-radio-group name="selectTeamWithdraw"
+                                  label="Select team withdraw"
+                                  options={teamOptions}
+                                  value={teamId}
+                                  type="radio"></lightning-radio-group>
+        </template>
+        
         <template if:true={error}>
             <c-error-panel errors={error}></c-error-panel>
         </template>

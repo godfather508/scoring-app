@@ -1,7 +1,6 @@
 import { LightningElement, api, wire } from 'lwc';
 import ScoringJoinRevokeTeamModal from 'c/scoringJoinRevokeTeamModal';
-import { refreshApex } from '@salesforce/apex';
-import checkJoinedEvent from '@salesforce/apex/ScoringAppLWCController.checkJoinedEvent';
+import findJoinedEvent from '@salesforce/apex/ScoringAppLWCController.findJoinedEvent';
 
 export default class ScoringJoinRevokeTeam extends LightningElement {  
 
@@ -13,11 +12,11 @@ export default class ScoringJoinRevokeTeam extends LightningElement {
     @api recordId = '';
 
     connectedCallback() {
-        this.loadCheckJoinedEvent();
+        this.loadFindJoinedEvent();
     }
 
-    loadCheckJoinedEvent() {
-        checkJoinedEvent({ eventId: this.recordId })
+    loadFindJoinedEvent() {
+        findJoinedEvent({ eventId: this.recordId })
             .then(result => {
                 this.joinedTeams = result;
                 if (this.joinedTeams.length > 0) {
@@ -44,11 +43,10 @@ export default class ScoringJoinRevokeTeam extends LightningElement {
     handleButtonClick() {
         ScoringJoinRevokeTeamModal.open({
             eventId: this.recordId,
-            isJoin: this.isJoin,
-            joinedTeams: this.joinedTeams
+            isJoin: this.isJoin
         }).then((result) => {
             if (resultModal === 'success') {
-                this.loadCheckJoinedEvent();
+                this.loadFindJoinedEvent();
             }
         });
       }

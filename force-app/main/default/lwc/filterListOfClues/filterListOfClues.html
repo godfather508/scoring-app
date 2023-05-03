@@ -1,35 +1,19 @@
 <template>
   <lightning-card title="Clues" icon-name="standard:campaign">
-    <div class="slds-var-m-around_medium">
 
-      <!-- <lightning-layout multiple-rows="true">
-        <template for:each={clues} for:item="clue">
-          <lightning-layout-item padding="around-small" size="12" key={clue.Id} style="border: 1px solid #d8dde6;">
-            <lightning-layout>
-              <lightning-layout-item padding="horizontal-small">
-                <a href="#" key={clue.Id} data-clue-id={clue.Id} onclick={handleClueSelect}>
-                  <p>{clue.Name}</p>
-                </a>
-              </lightning-layout-item>
-            </lightning-layout>
-          </lightning-layout-item>
-        </template>
-      </lightning-layout> -->
-
-        <div style="height: 300px;">
-            <lightning-datatable
-                    key-field="id"
-                    data={clues}
-                    show-row-number-column
-                    hide-checkbox-column
-                    columns={columns}
-                    onrowaction={handleClueSelect}>
-            </lightning-datatable>
-        </div>
-
-      <template if:true={error}>
-        <c-error-panel errors={error}></c-error-panel>
-      </template>
+    <div style="height: 300px;">
+        <lightning-datatable
+                key-field="id"
+                data={clues}
+                show-row-number-column
+                hide-checkbox-column
+                columns={columns}
+                onrowaction={handleClueSelect}>
+        </lightning-datatable>
     </div>
+
+    <template if:true={error}>
+      <c-error-panel errors={error}></c-error-panel>
+    </template>
   </lightning-card>
 </template>
