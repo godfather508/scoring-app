@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <label>Event</label>
     <referenceTo>Scoring_Event__c</referenceTo>
-    <relationshipLabel>Teams</relationshipLabel>
+    <relationshipLabel>Event Teams</relationshipLabel>
     <relationshipName>Scoring_Event_Teams</relationshipName>
     <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>

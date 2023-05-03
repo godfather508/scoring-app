@@ -87,17 +87,25 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
+        <fields>Description__c</fields>
+        <fields>Max_Point__c</fields>
         <relatedList>Scoring_Event_Clue__c.Event_Location__c</relatedList>
+        <sortField>Max_Point__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Scoring_Team__c</fields>
+        <fields>Event_Team_Scoring__c</fields>
+        <relatedList>Scoring_Event_Team__c.Scoring_Event_Location__c</relatedList>
+        <sortField>Event_Team_Scoring__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedNoteList</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedFileList</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
-        <relatedList>Scoring_Event_Team__c.Scoring_Event_Location__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

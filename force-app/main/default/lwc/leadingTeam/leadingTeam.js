@@ -1,6 +1,5 @@
 import { LightningElement, api, wire } from 'lwc';
-import { refreshApex } from '@salesforce/apex';
-import findLeadingTeam from '@salesforce/apex/LeadingTeamController.findLeadingTeam';
+import findLeadingTeam from '@salesforce/apex/ScoringAppLWCController.findLeadingTeam';
 
 export default class LeadingTeam extends LightningElement {
     messageCongrats = 'Congratulations to the team A who is leading with 100 points';

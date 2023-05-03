@@ -91,8 +91,9 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Event_Team_Scoring__c</fields>
+        <fields>Scoring_Team__c.NAME</fields>
         <fields>Scoring_Event_Location__c</fields>
+        <fields>Event_Team_Scoring__c</fields>
         <relatedList>Scoring_Event_Team__c.Scoring_Event__c</relatedList>
         <sortField>Event_Team_Scoring__c</sortField>
         <sortOrder>Desc</sortOrder>

@@ -33,6 +33,18 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
+                <componentName>countdownTimer</componentName>
+                <identifier>c_countdownTimer</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
+                <componentName>scoringJoinRevokeTeam</componentName>
+                <identifier>c_scoringJoinRevokeTeam</identifier>
+            </componentInstance>
+        </itemInstances>
+        <itemInstances>
+            <componentInstance>
                 <componentName>leadingTeam</componentName>
                 <identifier>c_leadingTeam</identifier>
             </componentInstance>
@@ -115,8 +127,8 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>countdownTimer</componentName>
-                <identifier>c_countdownTimer</identifier>
+                <componentName>filterListOfClues</componentName>
+                <identifier>c_filterListOfClues</identifier>
             </componentInstance>
         </itemInstances>
         <itemInstances>
