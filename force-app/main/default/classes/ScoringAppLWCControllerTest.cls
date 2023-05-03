@@ -9,7 +9,7 @@ private class ScoringAppLWCControllerTest {
             Test.startTest();
             Scoring_Event__c sEvent = [SELECT Id FROM Scoring_Event__c LIMIT 1];
             ScoringAppLWCController.findLeadingTeam(sEvent.Id);
-            ScoringAppLWCController.checkJoinedEvent(sEvent.Id);
+            ScoringAppLWCController.findJoinedEvent(sEvent.Id);
             ScoringAppLWCController.findTeams(sEvent.Id);
             ScoringAppLWCController.findClues(sEvent.Id);
             
